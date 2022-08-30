@@ -19,11 +19,11 @@ class CreateDireccionsTable extends Migration
             $table->string('telefono');
             $table->string('email')->nullable();
             $table->string('nif')->nullable();
-            $table->string('direccion')->default('F. Simplificada, Sin Datos');
+            $table->string('direccion')->nullable()->default('F. Simplificada, Sin Datos');
             $table->string('cp')->nullable();
             $table->string('poblacion')->default('Huelva');
             $table->string('provincia')->nullable();
-            $table->string('pais')->default('España');
+            $table->string('pais')->nullable()->default('España');
             $table->timestamps();
         });
     }

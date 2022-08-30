@@ -24,7 +24,7 @@
                         @if($tipofacturas)
                             <ul>
                                 @foreach ($tipofacturas as $item)
-                                    <li class="{!!$item->color!!}">{!!$item->icon!!} {{$item->name}} - {{$item->descripcion}}</li> 
+                                    <li class="{!!$item->color!!}">{!!$item->icon!!} {{$item->operacion->name}} {{$item->name}} - {{$item->descripcion}}</li> 
                                 @endforeach
                             </ul>
                         @endif

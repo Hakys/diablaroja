@@ -54,6 +54,7 @@ class FacturanteSeeder extends Seeder
                 
             ]);
         }
+
         //COMPRAS
         $facturantes = [
             [
@@ -275,42 +276,47 @@ class FacturanteSeeder extends Seeder
             ]);
         }
 
+        //VENTA
         /*
-                //VENTA
         $facturantes = Facturante::whereHas('tipo_factura', function(Builder $query){
             $query->whereHas('operacion', function(Builder $query){
                 $query->where('name','VENTA');
             });
         })->get();
+        */
+        $facturantes = Facturante::factory(10)->create();
 
+        $tipo_factura = TipoFactura::whereHas("operacion",function(Builder $query){
+            $query->whereIn('name',['VENTA']);
+        });
+        
         foreach($facturantes as $facturante){
-            if(random_int(0,2)){
-                $direccion = Direccion::factory()->sindatos()->create([
-                    'telefono' => $facturante->telefono,
-                ]);
-                for($i=0; $i < random_int(0,2); $i++){
-                    $direccion = Direccion::factory()->create([
+            $direccions = [];
+            for($i=0; $i < random_int(1,5); $i++){
+                if(random_int(0,3)){
+                    $direccions[] = Direccion::factory()->sindatos()->create([
+                        'telefono' => $facturante->telefono,
+                    ]);
+                }else{
+                    $direccions[] = Direccion::factory()->create([
                         'full_name' => Str::upper($facturante->alias),
                         'telefono' => $facturante->telefono,
                     ]);
                 }
-                $facturante->direccions_receptores()->attach([
-                    $direccion->id => [
-                        'created_at' => today(),
-                        'updated_at' => today(),
-                    ],
-                ]);
+                foreach ($direccions as $direccion) {
+                    $facturante->direccions()->attach([
+                        $direccion->id => [
+                            "tipo_factura_id" => $tipo_factura->inRandomOrder()->first()->id,
+                            'created_at' => today(),
+                            'updated_at' => today(),
+                        ],
+                    ]);
+                }  
             }
         }
-        */
-    
-    
-    
     
         /*
         
-
-
         //COMPRAS - PROV
         Facturante::factory(5)->create(["tipo_factura_id" => TipoFactura::where('name','PROV')->first()]);
 

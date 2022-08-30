@@ -15,12 +15,16 @@ class Facturante extends Model
 
     //Relación N:M padre
     public function tipo_facturas(){
-        return $this->belongsToMany(TipoFactura::class,'direccion_facturante');
+        return $this->belongsToMany(TipoFactura::class,'direccion_facturante')->withPivot('direccion_id');
     }
     
     //Relación N:M
     public function direccions(){
-        return $this->belongsToMany(Direccion::class);
+        return $this->belongsToMany(Direccion::class,'direccion_facturante')->withPivot('tipo_factura_id');
+    }
+    //Relación N:M
+    public function direccionswhere($tipo_factura_id){
+        return $this->belongsToMany(Direccion::class,'direccion_facturante')->withPivot('tipo_factura_id')->wherePivot('tipo_factura_id', $tipo_factura_id);
     }
     /*
     //Relación 1:M hijos

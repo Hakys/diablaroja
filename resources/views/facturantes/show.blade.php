@@ -16,11 +16,19 @@
                     @if($facturantes)
                         <ul>
                             @foreach ($facturantes as $item)
-                                <li><span class="pr-4 text-green-500">{{$item->telefono}}</span> {{$item->alias}} - {{$item->tipo_facturas->first()->name}}</li> 
-                                @if($item->direccions)
+                                <li><span class="pr-4 text-green-500">{{$item->telefono}}</span> {{$item->alias}} - </li> 
+                                @if($item->tipo_facturas)
                                     <ul class="pl-6">
-                                        @foreach ($item->direccions as $subitem)
-                                            <li>{{$subitem->direccion}} {{$subitem->poblacion}}</li>
+                                        @foreach ($item->tipo_facturas as $subitem)
+                                            <li>{{$subitem->name}}
+                                                @if($item->direccionswhere($subitem->pivot->tipo_factura_id))                                
+                                                    <ul class="pl-6">
+                                                        @foreach ($item->direccionswhere($subitem->pivot->tipo_factura_id)->get() as $subitem2)
+                                                            <li>{{$subitem2->direccion}} {{$subitem2->poblacion}}</li>
+                                                        @endforeach
+                                                    </ul> 
+                                                @endif
+                                            </li>
                                         @endforeach
                                     </ul> 
                                 @endif

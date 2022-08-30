@@ -26,15 +26,11 @@ class FacturanteFactory extends Factory
     public function definition()
     {
         $telefono = $this->faker->phoneNumber();
-        // SOLO CREA CLIENTES PARA VENTAS
-        $tipo_factura = TipoFactura::whereHas("operacion",function(Builder $query){
-            $query->whereIn('name',['VENTA']);
-        })->inRandomOrder()->first();
+        
         return [
             "alias" => $this->faker->name()." ".$this->faker->city." ".$this->faker->state,
             "telefono" => $telefono,
-            "slug" => Str::slug($telefono),
-            "tipo_factura_id" => $tipo_factura->id,
+            "slug" => Str::slug($telefono)
         ];
     }
 }
