@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Controlpanel;
+use App\Models\Facturante;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/facturantes',Facturante::class)->name('facturantes');
     Route::get('/facturas', function () {
         return view('facturas.show');
     })->name('facturas');

@@ -18,19 +18,19 @@ class OperacionSeeder extends Seeder
         $operaciones = [
             [
                 "name" => "COMPRA",
-                "icon" => "<i class='fas fa-shopping-cart'></i>",
+                "icon" => "<i class='fa-fw fas fa-shopping-cart'></i>",
                 "slug" => Str::slug("COMPRA"),
             ],[
                 "name" => "GASTO",
-                "icon" => "<i class='far fa-angry'></i>",
+                "icon" => "<i class='fa-fw far fa-angry'></i>",
                 "slug" => Str::slug("GASTO"),
             ],[
                 "name" => "VENTA",
-                "icon" => "<i class='fas fa-cash-register'></i>",
+                "icon" => "<i class='fa-fw fas fa-cash-register'></i>",
                 "slug" => Str::slug("VENTA"),
             ],[
                 "name" => "COMPRA-VENTA",
-                "icon" => "<i class='fas fa-diagnoses'></i>",
+                "icon" => "<i class='fa-fw fas fa-diagnoses'></i>",
                 "slug" => Str::slug("COMPRA-VENTA"),
             ],
         ];

@@ -55,8 +55,8 @@ class ConceptoSeeder extends Seeder
                 "slug" => Str::slug("Comisión por Rembolso"),
                 "operacion_id" => $gasto->id,
             ],[
-                "name" => "Cuota Seguridad Social Trabajadores Autónomos",
-                "slug" => Str::slug("Cuota Seguridad Social Trabajadores Autónomos"),
+                "name" => "Cuota Seguridad Social T.A.",
+                "slug" => Str::slug("Cuota Seguridad Social T.A."),
                 "operacion_id" => $gasto->id,
             ],[
                 "name" => "Cuota Tarjeta Visa",

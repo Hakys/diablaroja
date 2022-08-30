@@ -18,6 +18,9 @@
                     <x-jet-nav-link href="{{ route('controlpanel') }}" :active="request()->routeIs('controlpanel')">
                         {{ __('Panel de Control') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('facturantes') }}" :active="request()->routeIs('facturantes')">
+                        {{ __('Facturantes') }}
+                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('facturas') }}" :active="request()->routeIs('facturas')">
                         {{ __('Facturas') }}
                     </x-jet-nav-link>

@@ -15,6 +15,8 @@ class Controlpanel extends Model
         $tipofacturas = TipoFactura::all();
         $estados = Estado::all();
         $conceptos = Concepto::all();
-        return view('controlpanel.show',compact('operaciones','tipofacturas','estados','conceptos'));
+        $mensajerias = Mensajeria::all();
+        $tipo_pagos = TipoPago::all();
+        return view('controlpanel.show',compact('operaciones','tipofacturas','estados','conceptos','mensajerias','tipo_pagos'));
     }
 }

@@ -18,7 +18,6 @@ class CreateFacturantesTable extends Migration
             $table->string('alias')->unique();
             $table->string('telefono')->unique();
             $table->string('slug');
-            $table->foreignId('tipo_factura_id')->index();
             $table->timestamps();
         });
     }
