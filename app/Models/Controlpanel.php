@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Operacion;
 
 class Controlpanel extends Model
 {
@@ -12,11 +11,11 @@ class Controlpanel extends Model
 
     public function __invoke(){
         $operaciones = Operacion::all();
-        $tipofacturas = TipoFactura::all();
+        $tipos = Tipo::all();
         $estados = Estado::all();
         $conceptos = Concepto::all();
         $mensajerias = Mensajeria::all();
-        $tipo_pagos = TipoPago::all();
-        return view('controlpanel.show',compact('operaciones','tipofacturas','estados','conceptos','mensajerias','tipo_pagos'));
+        $pagos = Pago::all();
+        return view('controlpanel.show',compact('operaciones','tipos','estados','conceptos','mensajerias','pagos'));
     }
 }

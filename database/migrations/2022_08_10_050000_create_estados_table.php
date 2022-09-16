@@ -19,6 +19,7 @@ class CreateEstadosTable extends Migration
             $table->string('slug');
             $table->string('icon');
             $table->string('color');
+            $table->enum('de',['FAC','TPS']);
             $table->timestamps();
         });
     }

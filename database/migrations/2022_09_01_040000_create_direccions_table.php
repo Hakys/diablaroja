@@ -24,6 +24,8 @@ class CreateDireccionsTable extends Migration
             $table->string('poblacion')->default('Huelva');
             $table->string('provincia')->nullable();
             $table->string('pais')->nullable()->default('España');
+            $table->foreignId('contacto_id')->index();
+            $table->foreignId('tipo_id')->index();
             $table->timestamps();
         });
     }

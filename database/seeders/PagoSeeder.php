@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use App\Models\TipoPago;
+use App\Models\Pago;
 
-class TipoPagoSeeder extends Seeder
+class PagoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -36,7 +37,7 @@ class TipoPagoSeeder extends Seeder
         ];
 
         foreach ($tipopagos as $tipopago){
-            TipoPago::Create($tipopago);
+            Pago::Create($tipopago);
         }
     }
 }

@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('direccion_facturante', function (Blueprint $table) {
+        Schema::create('contactos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('facturante_id')->index();
-            $table->foreignId('direccion_id')->index();
-            $table->foreignId('tipo_factura_id')->index();
+            $table->string('alias')->unique();
+            $table->string('telefono')->unique();
+            $table->string('slug');
+            $table->foreignId('operacion_id')->index();
             $table->timestamps();
+           
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('direccion_facturante');
+        Schema::dropIfExists('contactos');
     }
 };

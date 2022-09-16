@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Operacion;
 use Illuminate\Database\Seeder;
+use App\Models\Operacion;
 use Illuminate\Support\Str;
-use App\Models\TipoFactura;
+use App\Models\Tipo;
 
-class TipoFacturaSeeder extends Seeder
+class TipoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,7 +19,6 @@ class TipoFacturaSeeder extends Seeder
         $compra = Operacion::where('name','COMPRA')->first();
         $gasto = Operacion::where('name','GASTO')->first();
         $venta = Operacion::where('name','VENTA')->first();
-        $compraventa = Operacion::where('name','COMPRA-VENTA')->first();
 
         $tipofacturas = [
             [
@@ -37,7 +36,7 @@ class TipoFacturaSeeder extends Seeder
                 "color" => 'text-orange-600',
                 "operacion_id" => $compra->id,
             ],[
-                "name" => "LC",
+                "name" => "LCH",
                 "descripcion" => "Compra a LoveCherry",
                 "slug" => Str::slug("Compra a LoveCherry"),
                 "icon" => "<i class='fa-fw fas fa-money-bill-alt'></i>",
@@ -47,6 +46,20 @@ class TipoFacturaSeeder extends Seeder
                 "name" => "GRU",
                 "descripcion" => "Compra a Grutinet",
                 "slug" => Str::slug("Compra a Grutinet"),
+                "icon" => "<i class='fa-fw fas fa-money-bill-alt'></i>",
+                "color" => 'text-orange-600',
+                "operacion_id" => $compra->id,
+            ],[
+                "name" => "DR",
+                "descripcion" => "Diabla Roja - Almacén",
+                "slug" => Str::slug("Diabla Roja - Almacén"),
+                "icon" => "<i class='fa-fw fas fa-money-bill-alt'></i>",
+                "color" => 'text-orange-600',
+                "operacion_id" => $compra->id,
+            ],[
+                "name" => "Comprador",
+                "descripcion" => "Yo como Comprador",
+                "slug" => Str::slug("Comprador"),
                 "icon" => "<i class='fa-fw fas fa-money-bill-alt'></i>",
                 "color" => 'text-orange-600',
                 "operacion_id" => $compra->id,
@@ -61,6 +74,13 @@ class TipoFacturaSeeder extends Seeder
                 "name" => "N/D",
                 "descripcion" => "Gastos No Desgrabable",
                 "slug" => Str::slug("Gastos No Desgrabable"),
+                "icon" => "<i class='fa-fw fas fa-money-bill-alt'></i>",
+                "color" => 'text-orange-600',
+                "operacion_id" => $gasto->id,
+            ],[
+                "name" => "Consumidor",
+                "descripcion" => "Yo como Consumidor",
+                "slug" => Str::slug("Consumidor"),
                 "icon" => "<i class='fa-fw fas fa-money-bill-alt'></i>",
                 "color" => 'text-orange-600',
                 "operacion_id" => $gasto->id,
@@ -86,24 +106,17 @@ class TipoFacturaSeeder extends Seeder
                 "color" => 'text-orange-600',
                 "operacion_id" => $venta->id,
             ],[
-                "name" => "C/V",
-                "descripcion" => "Compra-Venta",
-                "slug" => Str::slug("Compra-Venta"),
+                "name" => "Vendedor",
+                "descripcion" => "Yo como Vendedor",
+                "slug" => Str::slug("Vendedor"),
                 "icon" => "<i class='fa-fw fas fa-money-bill-alt'></i>",
                 "color" => 'text-orange-600',
-                "operacion_id" => $compraventa->id,
-            ],[
-                "name" => "DR",
-                "descripcion" => "Diabla Roja - Almacén",
-                "slug" => Str::slug("Diabla Roja - Almacén"),
-                "icon" => "<i class='fa-fw fas fa-money-bill-alt'></i>",
-                "color" => 'text-orange-600',
-                "operacion_id" => $compra->id,
+                "operacion_id" => $venta->id,
             ]
         ];
 
         foreach($tipofacturas as $tipofactura){
-            TipoFactura::Create($tipofactura);
+            Tipo::Create($tipofactura);
         }
     }
 }

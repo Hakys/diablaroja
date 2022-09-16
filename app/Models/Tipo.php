@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TipoFactura extends Model
+class Tipo extends Model
 {
     use HasFactory;
 
@@ -19,30 +19,30 @@ class TipoFactura extends Model
     }
 
     //Relación 1:M hijos
-    public function facturas(){
-        return $this->hasMany(Factura::class);
+    public function direccions(){
+        return $this->hasMany(Direccion::class);
     }
 /*
     //Relación 1:M hijos
     public function facturantes(){
         return $this->hasMany(Facturantes::class);
     }
-*/ 
+
     //Relación 1:M hijos
     public function conceptos(){
         return $this->hasMany(Concepto::class);
     }
-           
+            
     //Relación N:M padre
     public function facturantes(){
         return $this->belongsToMany(Facturante::class,'direccion_facturante')->withPivot('direccion_id');
     }
-    
+
     //Relación N:M
     public function direccions(){
         return $this->belongsToMany(Direccion::class,'direccion_facturante')->withPivot('facturante_id');
     }
-
+*/
     //URL amigable
     public function getRouteKeyName(){
         return 'slug';

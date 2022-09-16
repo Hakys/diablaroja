@@ -14,8 +14,8 @@ class Operacion extends Model
     ];
 
     //Relación 1:M hijos
-    public function tipo_facturas(){
-        return $this->hasMany(TipoFactura::class);
+    public function tipos(){
+        return $this->hasMany(Tipo::class);
     }
 
     //Relación 1:M hijos

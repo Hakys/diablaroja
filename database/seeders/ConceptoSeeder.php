@@ -19,7 +19,6 @@ class ConceptoSeeder extends Seeder
         $compra = Operacion::where('name','COMPRA')->first();
         $gasto = Operacion::where('name','GASTO')->first();
         $venta = Operacion::where('name','VENTA')->first();
-        $compraventa = Operacion::where('name',"COMPRA-VENTA")->first();
 
         $conceptos = [
            [
@@ -35,13 +34,13 @@ class ConceptoSeeder extends Seeder
                 "slug" => Str::slug("Artículos Eróticos"),
                 "operacion_id" => $venta->id,
             ],[
-                "name" => "Artículos Eróticos",
-                "slug" => Str::slug("Artículos Eróticos"),
-                "operacion_id" => $compraventa->id,
-            ],[
                 "name" => "Artículos Informática",
                 "slug" => Str::slug("Artículos Informática"),
                 "operacion_id" => $compra->id,
+            ],[
+                "name" => "Artículos Informática",
+                "slug" => Str::slug("Artículos Informática"),
+                "operacion_id" => $venta->id,
             ],[
                 "name" => "Asistencia Reunión Tuppersex",
                 "slug" => Str::slug("Asistencia Reunión Tuppersex"),

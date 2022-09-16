@@ -21,10 +21,10 @@
                     </div> 
                     <div class="basis-auto border-2 p-2 flex-nowrap">
                         <h1 class="font-bold text-lg text-center">Tipos de Facturas</h1>
-                        @if($tipofacturas)
+                        @if($tipos)
                             <ul>
-                                @foreach ($tipofacturas as $item)
-                                    <li class="{!!$item->color!!}">{!!$item->icon!!} {{$item->operacion->name}} {{$item->name}} - {{$item->descripcion}}</li> 
+                                @foreach ($tipos as $item)
+                                    <li class="{!!$item->color!!}">{!!$item->operacion->icon!!} {{$item->operacion->name}} {{$item->name}} - {{$item->descripcion}}</li> 
                                 @endforeach
                             </ul>
                         @endif
@@ -36,7 +36,7 @@
                         @if($estados)
                             <ul>
                                 @foreach ($estados as $item)
-                                    <li class="{!!$item->color!!}">{!!$item->icon!!} {{$item->name}}</li> 
+                                    <li class="{!!$item->color!!}">{!!$item->icon!!} {!!$item->de!!} {{$item->name}}</li> 
                                 @endforeach
                             </ul>
                         @endif
@@ -55,10 +55,10 @@
                     </div>
                     <div class="basis-auto border-2 p-2 flex-nowrap">
                         <h1 class="font-bold text-lg text-center">Tipos de Pago</h1>
-                        @if($tipo_pagos)
+                        @if($pagos)
                             <ul>
-                                @foreach ($tipo_pagos as $item)
-                                    <li> <i class="fa-fw fa-regular fa-circle-check"></i> {{$item->name}} </li> 
+                                @foreach ($pagos as $item)
+                                    <li> {!!$item->icon!!} {{$item->name}} </li> 
                                 @endforeach
                             </ul>
                         @endif
@@ -78,7 +78,7 @@
                         @if($conceptos)
                             <ul>
                                 @foreach ($conceptos as $item)
-                                    <li><i class="fa-fw fa-regular fa-circle-check"></i> {{$item->name}} </li> 
+                                    <li> {!!$item->operacion->icon!!} {{$item->operacion->name}}  {{$item->name}} </li> 
                                 @endforeach
                             </ul>
                         @endif

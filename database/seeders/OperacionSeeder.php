@@ -29,10 +29,10 @@ class OperacionSeeder extends Seeder
                 "icon" => "<i class='fa-fw fas fa-cash-register'></i>",
                 "slug" => Str::slug("VENTA"),
             ],[
-                "name" => "COMPRA-VENTA",
-                "icon" => "<i class='fa-fw fas fa-diagnoses'></i>",
-                "slug" => Str::slug("COMPRA-VENTA"),
-            ],
+                "name" => "COMPRAVENTA",
+                "icon" => "<i class='fa-fw fas fa-cash-register'></i>",
+                "slug" => Str::slug("COMPRAVENTA"),
+            ]
         ];
 
         foreach($operaciones as $operacion){

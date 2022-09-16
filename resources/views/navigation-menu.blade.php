@@ -18,16 +18,19 @@
                     <x-jet-nav-link href="{{ route('controlpanel') }}" :active="request()->routeIs('controlpanel')">
                         {{ __('Panel de Control') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('facturantes') }}" :active="request()->routeIs('facturantes')">
-                        {{ __('Facturantes') }}
+                    <x-jet-nav-link href="{{ route('contactos') }}" :active="request()->routeIs('contactos')">
+                        {{ __('Contactos') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('facturas') }}" :active="request()->routeIs('facturas')">
                         {{ __('Facturas') }}
-                    </x-jet-nav-link>
+                    </x-jet-nav-link>     
                 </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                <x-jet-nav-link href="http://localhost/phpmyadmin/index.php?route=/database/structure&server=1&db=diablaroja" target="_blank" :active="false">
+                    {{ __('PHPMyAdmin') }}
+                </x-jet-nav-link>
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                     <div class="ml-3 relative">

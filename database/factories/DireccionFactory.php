@@ -33,7 +33,8 @@ class DireccionFactory extends Factory
         ];
     }
 
-    public function sindatos(){
+    public function sindatos()
+    {
         return $this->state(function (array $attributes) {
             return [
                 "full_name" => "Recoge Huelva",
