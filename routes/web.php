@@ -3,6 +3,7 @@
 use App\Models\Controlpanel;
 use App\Models\Contacto;
 use App\Models\Factura;
+use App\Http\Controllers\ReadXmlController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +28,5 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/controlpanel',Controlpanel::class)->name('controlpanel');
     Route::get('/contactos',Contacto::class)->name('contactos');
     Route::get('/facturas',Factura::class)->name('facturas');
+    Route::get("/read-xml/{name}/{limit?}", [ReadXmlController::class, "index"])->name('read-xml');
 });

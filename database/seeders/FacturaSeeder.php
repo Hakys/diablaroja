@@ -2,16 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Concepto;
-use App\Models\Emisor;
-use App\Models\Factura;
-use App\Models\Facturante;
+
 use Illuminate\Database\Seeder;
-use App\Models\TipoFactura;
-use App\Models\Operacion;
-use App\Models\Receptor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use App\Models\Operacion;
+use App\Models\Direccion;
+use App\Models\Concepto;
+use App\Models\Factura;
 
 class FacturaSeeder extends Seeder
 {
@@ -22,6 +20,7 @@ class FacturaSeeder extends Seeder
      */
     public function run()
     {
+        /*
         //COMPRA-VENTA-RECEPTOR
         $compraventas = Receptor::whereHas('facturante', function(Builder $query){
             $query->whereHas('tipo_factura', function(Builder $query){
@@ -30,58 +29,74 @@ class FacturaSeeder extends Seeder
                 });
             });
         })->get();
-
+        */
+        
         //COMPRA
         $operacion = Operacion::where('name','COMPRA')->first();
-        $conceptos = Concepto::where('operacion_id', $operacion->id)->get();
-        $emisores = Emisor::whereHas('facturante', function(Builder $query){
-            $query->whereHas('tipo_factura', function(Builder $query){
-                $query->whereHas('operacion', function(Builder $query){
-                    $query->where('name','COMPRA');
-                });
-            });
-        })->get();
-        $receptores = $compraventas;
-        foreach($emisores as $emisor){
-            Factura::factory()->create([
-                'concepto_id' => $conceptos->random(1)->first()->id,
-                'tipo_factura_id' => $emisor->facturante->tipo_factura_id,
-                'emisor_id' => $emisor->id,
-                'receptor_id' => $receptores->random(1)->first()->id,
+        $dir_emisores = Direccion::whereHas('tipo', function(Builder $query){
+            $query->whereHas('operacion', function(Builder $query){
+                $query->whereIn('name',['COMPRA']);
+            })->whereNot('name','Comprador');
+        })->get(); 
+        $dir_receptores = Direccion::whereHas('tipo', function(Builder $query){
+            $query->where('name','Comprador'); 
+        });
+        $conceptos = Concepto::whereHas('operacion', function(Builder $query){
+            $query->where('name','COMPRA');
+        });
+        foreach($dir_emisores as $dir_emisor){
+            $f[] = Factura::factory()->create([
+                'operacion_id' => $operacion->id,
+                'emisor_id' => $dir_emisor->id,
+                'receptor_id' => $dir_receptores->inRandomOrder()->first()->id,
+                'concepto_id' => $conceptos->inRandomOrder()->first()->id,
             ]);
-        }
+        }     
 
         //GASTO
         $operacion = Operacion::where('name','GASTO')->first();
-        $conceptos = Concepto::where('operacion_id', $operacion->id)->get();
-        $emisores = Emisor::whereHas('facturante', function(Builder $query){
-            $query->whereHas('tipo_factura', function(Builder $query){
-                $query->whereHas('operacion', function(Builder $query){
-                    $query->where('name','GASTO');
-                });
-            });
-        })->get();
-        $receptores = $compraventas;
-        foreach($emisores as $emisor){
-            Factura::factory()->create([
-                'concepto_id' => $conceptos->random(1)->first()->id,
-                'tipo_factura_id' => $emisor->facturante->tipo_factura_id,
-                'emisor_id' => $emisor->id,
-                'receptor_id' => $receptores->random(1)->first()->id,
+        $dir_emisores = Direccion::whereHas('tipo', function(Builder $query){
+            $query->whereHas('operacion', function(Builder $query){
+                $query->whereIn('name',['GASTO']);
+            })->whereNot('name','Consumidor');
+        })->get(); 
+        $dir_receptores = Direccion::whereHas('tipo', function(Builder $query){
+            $query->where('name','Consumidor'); 
+        });
+        $conceptos = Concepto::whereHas('operacion', function(Builder $query){
+            $query->where('name','GASTO');
+        });
+        foreach($dir_emisores as $dir_emisor){
+            $f[] = Factura::factory()->create([
+                'operacion_id' => $operacion->id,
+                'emisor_id' => $dir_emisor->id,
+                'receptor_id' => $dir_receptores->inRandomOrder()->first()->id,
+                'concepto_id' => $conceptos->inRandomOrder()->first()->id,
             ]);
-        }
-
-        //COMPRA-VENTA-EMISOR
-        $compraventas = Emisor::whereHas('facturante', function(Builder $query){
-            $query->whereHas('tipo_factura', function(Builder $query){
-                $query->whereHas('operacion', function(Builder $query){
-                    $query->where('name','COMPRA-VENTA');
-                });
-            });
-        })->get();
+        }     
 
         //VENTA
         $operacion = Operacion::where('name','VENTA')->first();
+        $dir_emisores = Direccion::whereHas('tipo', function(Builder $query){
+            $query->where('name','Vendedor'); 
+        });
+        $dir_receptores = Direccion::whereHas('tipo', function(Builder $query){
+            $query->whereHas('operacion', function(Builder $query){
+                $query->whereIn('name',['VENTA']);
+            })->whereNot('name','Vendedor');
+        })->get(); 
+        $conceptos = Concepto::whereHas('operacion', function(Builder $query){
+            $query->where('name','VENTA');
+        });
+        foreach($dir_receptores as $dir_receptor){
+            $f[] = Factura::factory()->create([
+                'operacion_id' => $operacion->id,
+                'emisor_id' => $dir_emisores->inRandomOrder()->first()->id,
+                'receptor_id' => $dir_receptor->id,
+                'concepto_id' => $conceptos->inRandomOrder()->first()->id,
+            ]);
+        }   
+/*
         $conceptos = Concepto::where('operacion_id', $operacion->id)->get();
         $emisor = $compraventas;
         $receptores = Receptor::whereHas('facturante', function(Builder $query){
@@ -117,5 +132,6 @@ class FacturaSeeder extends Seeder
                 $factura->save();
             }
         }
+        */
     }
 }

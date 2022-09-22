@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use App\Models\Factura;
 use App\Models\Mensajeria;
-use Illuminate\Support\Str;
-use Illuminate\Database\Seeder;
 
 class FacturaMensajeriaSeeder extends Seeder
 {
@@ -18,10 +18,10 @@ class FacturaMensajeriaSeeder extends Seeder
     {
         $facturas = Factura::all();
         foreach($facturas as $factura){
-            for($i=0; $i < random_int(1,2); $i++){
+            for($i=0; $i < random_int(1,3); $i++){
                 $mensajeria = Mensajeria::all()->random();
-                if($mensajeria->id == 1) $seguimiento = "";
-                else $seguimiento = Str::upper(Str::random(12));
+                if($mensajeria->id != 1) $seguimiento = Str::upper(Str::random(12));
+                else $seguimiento = "";
                 $factura->envios()->attach([
                     $mensajeria->id => [
                         'seguimiento' => $seguimiento,

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Controlpanel extends Model
 {
@@ -15,7 +16,18 @@ class Controlpanel extends Model
         $estados = Estado::all();
         $conceptos = Concepto::all();
         $mensajerias = Mensajeria::all();
-        $pagos = Pago::all();
-        return view('controlpanel.show',compact('operaciones','tipos','estados','conceptos','mensajerias','pagos'));
+        $metodospagos = Pago::all();
+        $contactos = Contacto::all();
+        $direcciones = Direccion::all();
+        $facturas = Factura::all();
+        $envios = DB::table('factura_mensajeria')->get();
+        $pagos = DB::table('factura_pago')->get();
+        $productos = Producto::all();
+        return view('controlpanel.show',compact(
+            'operaciones','tipos','estados',
+            'conceptos','mensajerias','metodospagos',
+            'contactos','direcciones','facturas',
+            'envios', 'pagos', 'productos'
+        ));
     }
 }

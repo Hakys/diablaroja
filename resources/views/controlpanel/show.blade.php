@@ -41,8 +41,6 @@
                             </ul>
                         @endif
                     </div> 
-                </div>
-                <div class="basis-auto space-y-2">
                     <div class="basis-auto border-2 p-2 flex-nowrap">
                         <h1 class="font-bold text-lg text-center">Mensajerias</h1>
                         @if($mensajerias)
@@ -54,13 +52,53 @@
                         @endif
                     </div>
                     <div class="basis-auto border-2 p-2 flex-nowrap">
-                        <h1 class="font-bold text-lg text-center">Tipos de Pago</h1>
-                        @if($pagos)
+                        <h1 class="font-bold text-lg text-center">Métodos de Pago</h1>
+                        @if($metodospagos)
                             <ul>
-                                @foreach ($pagos as $item)
+                                @foreach ($metodospagos as $item)
                                     <li> {!!$item->icon!!} {{$item->name}} </li> 
                                 @endforeach
                             </ul>
+                        @endif
+                    </div>
+                </div>
+                <div class="basis-auto space-y-2">
+                    <div class="basis-auto border-2 p-2 flex-nowrap">
+                        <h1 class="font-bold text-lg text-center">Contactos</h1>
+                        @if($contactos)
+                            Número de Entradas: {{$contactos->count()}}
+                        @endif
+                    </div>
+                    <div class="basis-auto border-2 p-2 flex-nowrap">
+                        <h1 class="font-bold text-lg text-center">Direcciones</h1>
+                        @if($direcciones)
+                            Número de Entradas: {{$direcciones->count()}}
+                        @endif
+                    </div>
+                    <div class="basis-auto border-2 p-2 flex-nowrap">
+                        <h1 class="font-bold text-lg text-center">Facturas</h1>
+                        @if($facturas)
+                            Número de Entradas: {{$facturas->count()}}
+                        @endif
+                    </div>
+                    <div class="basis-auto border-2 p-2 flex-nowrap">
+                        <h1 class="font-bold text-lg text-center">Envios</h1>
+                        @if($envios)
+                            Número de Entradas: {{$envios->count()}}
+                        @endif
+                    </div>
+                    <div class="basis-auto border-2 p-2 flex-nowrap">
+                        <h1 class="font-bold text-lg text-center">Pagos</h1>
+                        @if($pagos)
+                            Número de Entradas: {{$pagos->count()}}
+                        @endif
+                    </div>
+                    <div class="basis-auto border-2 p-2 flex-nowrap">
+                        <h1 class="font-bold text-lg text-center">Productos</h1>
+                        <a href="{{route('read-xml','DL1')}}">Importar Archivo</a><br>
+                        <a href="{{route('read-xml','DL2')}}">Importar Productos</a><br>
+                        @if($pagos)
+                            Número de Entradas: {{$productos->count()}}
                         @endif
                     </div>
                 </div>

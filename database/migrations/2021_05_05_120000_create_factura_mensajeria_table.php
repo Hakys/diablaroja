@@ -17,7 +17,7 @@ class CreateFacturaMensajeriaTable extends Migration
             $table->id();
             $table->foreignId('factura_id')->index();
             $table->foreignId('mensajeria_id')->index();
-            $table->string('seguimiento');
+            $table->string('seguimiento')->default("");
             $table->float('total',8,2);
             $table->timestamps();
         });

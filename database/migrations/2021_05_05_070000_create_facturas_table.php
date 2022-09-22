@@ -15,14 +15,16 @@ class CreateFacturasTable extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
+            $table->date('fecha')->default(today());
             $table->string('num_pedido');
             $table->string('num_factura');
-            $table->foreignId('tipo_factura_id')->index();
-            $table->foreignId('direccion_facturante_id')->name('emisor')->index();
-            $table->foreignId('direccion_facturante_id')->name('receptor')->index();
+            $table->float('total',8,2);
+            $table->foreignId('operacion_id')->index();
+            $table->foreignId('concepto_id')->index();
+            $table->foreignId('direccion_id')->name('emisor_id')->index();
+            $table->foreignId('direccion_id')->name('receptor_id')->index();
             $table->foreignId('factura_id')->index()->name('asociada')->nullable()->default(null);
             $table->foreignId('estado_id')->index()->default(1);
-            $table->foreignId('concepto_id')->index();
             $table->timestamps();
         });
     }
