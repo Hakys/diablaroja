@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-lg text-gray-800 leading-none">
             {{ __('Panel de Control') }}
         </h2>
     </x-slot>
@@ -94,9 +94,10 @@
                         @endif
                     </div>
                     <div class="basis-auto border-2 p-2 flex-nowrap">
-                        <h1 class="font-bold text-lg text-center">Productos</h1>
+                        <h1 class="font-bold text-lg text-center">
+                            <a href="{{ route('productos')}}" class="text-blue-700">Productos</a></h1>
                         <a href="{{route('read-xml','DL1')}}">Importar Archivo</a><br>
-                        <a href="{{route('read-xml','DL2')}}">Importar Productos</a><br>
+                        <a href="{{route('read-xml','DL2/5')}}">Importar Productos</a><br>
                         @if($pagos)
                             Número de Entradas: {{$productos->count()}}
                         @endif

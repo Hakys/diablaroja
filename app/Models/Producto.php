@@ -13,4 +13,8 @@ class Producto extends Model
         "id","created_at","updated_at"
     ];
     
+    //URL Amigable
+    public function getRouteKeyName(){
+        return 'referencia';
+    }
 }

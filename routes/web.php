@@ -1,10 +1,12 @@
 <?php
 
-use App\Models\Controlpanel;
+use Illuminate\Support\Facades\Route;
 use App\Models\Contacto;
 use App\Models\Factura;
 use App\Http\Controllers\ReadXmlController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ControlpanelController;
+use App\Http\Controllers\ProductoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +27,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/controlpanel',Controlpanel::class)->name('controlpanel');
+    Route::get('/controlpanel',ControlpanelController::class)->name('controlpanel');
     Route::get('/contactos',Contacto::class)->name('contactos');
     Route::get('/facturas',Factura::class)->name('facturas');
-    Route::get("/read-xml/{name}/{limit?}", [ReadXmlController::class, "index"])->name('read-xml');
+    Route::get('/productos',ProductoController::class)->name('productos');    
+    Route::get('/productos/{referencia}',[ProductoController::class,'show'])->name('productos.show');    
 });
+Route::get("/read-xml/{name}/{limit?}", [ReadXmlController::class, "index"])->name('read-xml');

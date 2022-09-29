@@ -27,7 +27,10 @@ return new class extends Migration
             $table->boolean("available");
             $table->string('url')->nullable();
             $table->date("release_at");
+            $table->string('url_image')->nullable();
+            $table->integer('direccion')->defatult(1);
             $table->timestamps();
+            $table->unique(['referencia','direccion']);
         });
     }
 

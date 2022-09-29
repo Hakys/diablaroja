@@ -31,9 +31,9 @@ class ReadXmlController extends Controller
                 $to = "public\imports\dreamlove2.xml";
                 $xmlString = file_get_contents($url);
                 if(Storage::put($to,$xmlString))
-                    echo "EXITO DL1";
+                    echo "DL: EXITO";
                 else
-                    echo "ERROR DL1";
+                    echo "DL1: ERROR";
                 break;
                 /*
             case 'DL2':
@@ -89,6 +89,16 @@ class ReadXmlController extends Controller
                 $xml->asXML($to);
                 $i=0;
                 foreach($xml->product as $product){
+                    $url_image = (string) $product->images[0]->image[0]->src;
+                    foreach($product->images[0]->image as $img){
+                        if($img['preferred']) $url_image = $img->src;
+                        //echo $img['preferred']; echo $img->src."</br>";
+                    }
+                    
+                    //dd($product->images[0]->image[2]);
+                    //dd($product->images[0]->image[0]['preferred']);
+                    //dd($product->images[0]->image[0]->src);
+                    
                     $producto_array = [];
                     $producto_array = [
                         //'proveedor_id' => (integer) $proveedor->id,
@@ -105,18 +115,20 @@ class ReadXmlController extends Controller
                         'release_at' => new Datetime($product->release_date),
                         'updated_at' => new Datetime($product->updated),
                         'html_description' => (string) $product->html_description,
+                        'url_image' => (string) $url_image,
+                        'direccion' => (integer) 7,
                     ];
 
                     try {
                         Producto::create($producto_array);
                     } catch (QueryException $e) {
                         echo now()." ref. ".$product->public_id." ERROR: ".$e->getCode()."<br/>";
-                    }
-
+                        $i--;
+                    } 
+                    $i++;    
                     if($i>$limit) break;
-                    else $i++;
                 }
-                echo "EXITO DL2";
+                echo "DL2: FIN";
                 break;
             case 'DL3':
                 $to = storage_path("app\public\imports\dreamlove2.xml");
