@@ -14,6 +14,11 @@ class Operacion extends Model
     ];
 
     //Relación 1:M hijos
+    public function contactos(){
+        return $this->hasMany(Contacto::class);
+    }
+
+    //Relación 1:M hijos
     public function tipos(){
         return $this->hasMany(Tipo::class);
     }

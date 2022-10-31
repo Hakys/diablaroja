@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-lg text-gray-800 leading-none">
             <a href="{{ route('productos') }}" class="underline text-blue-700 mr-2"><i class="fa-solid fa-angles-left"></i></a>
-            {{ __('Productos: ').$producto->referencia }}
+            {{ __('Producto: ').$producto->referencia }}
         </h2>
     </x-slot>
 

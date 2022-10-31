@@ -16,14 +16,14 @@
                     @if($productos)
                        <div class="flex flex-col">
                             @foreach ($productos as $item)
-                                <div class="flex flex-row flex-nowrap mb-2 border h-24">
+                                <div class="flex flex-row flex-nowrap mb-2 border h-26">
                                     <div class="flex w-1/6 border p-1">
                                         <img class="max-w-full h-auto mx-auto" 
                                             src="{{ $item->url_image?$item->url_image:url('/storage/images/no_disponible.jpg') }}">
                                     </div>
-                                    <div class="flex w-full border px-2">
-                                        {{$item->title}} <br>
-                                        Ref: {{$item->referencia}}                                        
+                                    <div class="w-full border p-2 text-sm">
+                                        <a class="text-blue-700 underline" href="{{ route('productos.show',$item->referencia) }}">{{$item->title}}</a><br>
+                                        Ref: <a class="text-blue-700 underline" href="{{ route('productos.show',$item->referencia) }}">{{$item->referencia}}</a><br>                                     
                                         Lanzamiento: {{$item->release_at}} <br>
                                         Unds: {{$item->stock}} 
                                         Coste: {{$item->coste}}€ 
@@ -37,10 +37,7 @@
                                             Proveedor<i class="ml-2 fa-solid fa-angles-right"></i></a><br>                                       
                                         <a class="text-red-600 font-bold text-lg underline" 
                                             href="https://diablaroja.es/busqueda?controller=search&s={{$item->referencia}}" target="_blank">
-                                                Tienda<i class="ml-2 fa-solid fa-angles-right"></i></a><br> 
-                                        <a class="text-blue-700 font-bold text-lg underline" 
-                                            href="{{ route('productos.show',$item->referencia) }}" target="_blank">
-                                                Detalles<i class="ml-2 fa-solid fa-angles-right"></i></a>
+                                            Web<i class="ml-2 fa-solid fa-angles-right"></i></a><br> 
                                     </div>
                                 </div>
                                 <!--    <div class="flex-1 w-1/10 border">

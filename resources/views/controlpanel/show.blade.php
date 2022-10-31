@@ -14,7 +14,9 @@
                         @if($operaciones)
                             <ul>
                                 @foreach ($operaciones as $item)
-                                    <li>{!!$item->icon!!} {{$item->name}}</li> 
+                                    <li>
+                                        {!!$item->icon!!} {{$item->name}}
+                                    </li> 
                                 @endforeach
                             </ul>
                         @endif
@@ -64,10 +66,12 @@
                 </div>
                 <div class="basis-auto space-y-2">
                     <div class="basis-auto border-2 p-2 flex-nowrap">
-                        <h1 class="font-bold text-lg text-center">Contactos</h1>
+                        <h1 class="font-bold text-lg text-center">
+                            <a href="{{ route('contactos')}}" class="text-blue-700">Contactos</a></h1>                        
                         @if($contactos)
                             Número de Entradas: {{$contactos->count()}}
                         @endif
+                        @livewire('operacion-filter')
                     </div>
                     <div class="basis-auto border-2 p-2 flex-nowrap">
                         <h1 class="font-bold text-lg text-center">Direcciones</h1>
@@ -102,7 +106,8 @@
                             Número de Entradas: {{$productos->count()}}
                         @endif
                     </div>
-                </div>
+                    @livewire('hello-world')
+                </div>                
                 <!--
                 <div class="basis-auto flex flex-row space-x-2 flex-wrap">
                                    
@@ -126,4 +131,7 @@
            </div>
         </div>
     </div>
+    @push('modals')
+        @livewire('contacto-create')
+    @endpush
 </x-app-layout>

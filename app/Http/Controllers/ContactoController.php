@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Contacto;
+use App\Models\Operacion;
 
 class ContactoController extends Controller
 {
@@ -13,7 +15,18 @@ class ContactoController extends Controller
      */
     public function index()
     {
-        //
+        return view('contactos.index');
+    }
+
+    
+    /**
+     * Display a filtered listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter(Operacion $operacion)
+    {
+        return view('contactos.filter',compact('operacion'));    
     }
 
     /**
@@ -43,9 +56,9 @@ class ContactoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Contacto $contacto)
     {
-        //
+        return view('contactos.show',compact('contacto'));    
     }
 
     /**

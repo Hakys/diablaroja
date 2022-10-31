@@ -19,6 +19,16 @@ class Direccion extends Model
         return $this->belongsTo(Contacto::class);
     }
 
+    //Relación 1:M hijos
+    public function facturas_emitidas(){
+        return $this->hasMany(Factura::class,'emisor_id');
+    }
+
+    //Relación 1:M hijos
+    public function facturas_recibidas(){
+        return $this->hasMany(Factura::class,'receptor_id');
+    }
+
     /*
     //Relación N:M
     public function facturantes(){

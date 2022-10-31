@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-lg text-gray-800 leading-none">
-            <a href="{{ route('controlpanel') }}" class="underline text-blue-700 mr-2"><i class="fa-solid fa-angles-left"></i></a>
-            {{ __('Contactos') }}
+            <a href="{{ route('contactos') }}" class="underline text-blue-700 mr-2"><i class="fa-solid fa-angles-left"></i></a>
+            {{ __('Contacto: '). $contacto->alias." (".$contacto->telefono.")"}}
         </h2>
     </x-slot>
 
@@ -13,22 +13,8 @@
                     
                 </div>
                 <div class="basis-3/4 border-2 p-2">
-                    <h1 class="font-bold text-lg text-center">Contactos y Direcciones</h1>
-                    @if($contactos)
-                        <ul>
-                            @foreach ($contactos as $item)
-                                <li><span class="border-l-indigo-500">{{$item->operacion->name}}</span> <span class="pr-4 text-green-500">{{$item->telefono}}</span> {{$item->alias}}
-                                    <ul class="pl-6">
-                                        @foreach ($item->direccions as $subitem)
-                                            <li>{{$subitem->tipo->name}} {{$subitem->direccion}} {{$subitem->poblacion}}</li>
-                                        @endforeach
-                                    </ul> 
-                                </li>
-                            @endforeach
-                        </ul>
-                    @else
-                        <span class="text-red-500">No hay elementos a mostrar</span>
-                    @endif
+                    @livewire('contacto-edit',['contacto' => $contacto],key($contacto->id))      
+                    @livewire('direccion-filter',['direccions' => $contacto->direccions])      
                 </div>
            </div>
         </div>

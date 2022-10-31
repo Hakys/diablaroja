@@ -7,6 +7,8 @@ use LivewireUI\Modal\ModalComponent;
 
 class HelloWorld extends Component
 {
+    public $open;
+
     public function render()
     {
         return view('livewire.hello-world');

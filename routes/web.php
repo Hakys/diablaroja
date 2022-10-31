@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Contacto;
 use App\Models\Factura;
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ReadXmlController;
 use App\Http\Controllers\ControlpanelController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\OperacionController;
 
 
 /*
@@ -28,9 +29,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         return view('dashboard');
     })->name('dashboard');
     Route::get('/controlpanel',ControlpanelController::class)->name('controlpanel');
-    Route::get('/contactos',Contacto::class)->name('contactos');
+    Route::get('/contactos',[ContactoController::class,'index'])->name('contactos');
+    Route::get('/contactos/{operacion}',[ContactoController::class,'filter'])->name('contactos.filter');
+    //Route::get('/operacions/{operacion}',[OperacionController::class,'show'])->name('operacions.show');
+    Route::get('/contacto/{contacto}',[ContactoController::class,'show'])->name('contactos.show');
     Route::get('/facturas',Factura::class)->name('facturas');
-    Route::get('/productos',ProductoController::class)->name('productos');    
+    Route::get('/productos',[ProductoController::class,'index'])->name('productos');    
     Route::get('/productos/{referencia}',[ProductoController::class,'show'])->name('productos.show');    
 });
 Route::get("/read-xml/{name}/{limit?}", [ReadXmlController::class, "index"])->name('read-xml');

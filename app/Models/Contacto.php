@@ -10,7 +10,7 @@ class Contacto extends Model
     use HasFactory;
 
     protected $fillable = [
-        "operacion_id","name","telefono","slug"
+        "operacion_id","alias","telefono","slug"
     ];
 
     //Relación 1:M padre
@@ -27,9 +27,10 @@ class Contacto extends Model
     public function getRouteKeyName(){
         return 'telefono';
     }
-
+/*
     public function __invoke(){
         $contactos = Contacto::all();
         return view('contactos.show',compact('contactos'));
     }
+*/
 }

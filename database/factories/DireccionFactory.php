@@ -30,6 +30,7 @@ class DireccionFactory extends Factory
             "poblacion" => $this->faker->city,
             "provincia" => $this->faker->state,
             "nif" => $this->faker->ean8.Str::upper($this->faker->randomLetter),
+            "email" => $this->faker->email,
         ];
     }
 
@@ -37,12 +38,13 @@ class DireccionFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                "full_name" => "Recoge Huelva",
+                "full_name" => "Recoge",
                 "direccion" => "F. Simplificada, Sin Datos",
                 "cp" => "",
-                "poblacion" => "",
+                "poblacion" => "Huelva",
                 "provincia" => "",
                 "nif" => "",
+                "email" => ""
             ];
         });
     }
