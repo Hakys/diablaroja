@@ -1,9 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-lg text-gray-800 leading-none">
-            <a href="{{ route('contactos') }}" class="underline text-blue-700 mr-2"><i class="fa-solid fa-angles-left"></i></a>
-            {{ __('Contacto: '). $contacto->alias." (".$contacto->telefono.")"}}
-        </h2>
+        <a href="{{ route('contactos') }}" class="underline text-blue-700 mr-2"><i class="fa-solid fa-angles-left"></i></a>
+        {{ __('Contacto: '). $contacto->alias." (".$contacto->telefono.")"}}
     </x-slot>
 
     <div>

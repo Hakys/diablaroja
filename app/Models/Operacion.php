@@ -10,7 +10,7 @@ class Operacion extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name","slug","icon"
+        "name","slug","icon","color"
     ];
 
     //Relación 1:M hijos

@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-lg text-gray-800 leading-none">
-            {{ __('Panel de Control') }}
-        </h2>
+        {{ __('Panel de Control') }}
     </x-slot>
 
     <div>
@@ -14,7 +12,7 @@
                         @if($operaciones)
                             <ul>
                                 @foreach ($operaciones as $item)
-                                    <li>
+                                    <li class="{{'text-'.$item->color}} font-semibold">
                                         {!!$item->icon!!} {{$item->name}}
                                     </li> 
                                 @endforeach
@@ -26,7 +24,9 @@
                         @if($tipos)
                             <ul>
                                 @foreach ($tipos as $item)
-                                    <li class="{!!$item->color!!}">{!!$item->operacion->icon!!} {{$item->operacion->name}} {{$item->name}} - {{$item->descripcion}}</li> 
+                                    <li class="{{'text-'.$item->color}}">
+                                        {!!$item->operacion->icon!!} {{$item->operacion->name}} {{$item->name}} - {{$item->descripcion}}
+                                    </li> 
                                 @endforeach
                             </ul>
                         @endif

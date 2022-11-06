@@ -18,6 +18,7 @@ class CreateOperacionsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('icon');
+            $table->string('color');
             $table->timestamps();
         });
     }

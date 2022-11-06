@@ -1,5 +1,4 @@
-import './bootstrap';
-import * as bootstrap from 'bootstrap';
+require('./bootstrap');
 
 import Alpine from 'alpinejs';
 

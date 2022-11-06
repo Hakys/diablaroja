@@ -25,10 +25,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::get('/controlpanel',ControlpanelController::class)->name('controlpanel');
+    //Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+    Route::get('/dashboard',ControlpanelController::class)->name('dashboard');
     Route::get('/contactos',[ContactoController::class,'index'])->name('contactos');
     Route::get('/contactos/{operacion}',[ContactoController::class,'filter'])->name('contactos.filter');
     //Route::get('/operacions/{operacion}',[OperacionController::class,'show'])->name('operacions.show');
